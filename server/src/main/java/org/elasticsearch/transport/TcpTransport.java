@@ -870,8 +870,8 @@ public abstract class TcpTransport extends AbstractLifecycleComponent implements
     private void sendRequestToChannel(final DiscoveryNode node, final TcpChannel channel, final long requestId, final String action,
                                       final TransportRequest request, TransportRequestOptions options, Version channelVersion,
                                       byte status) throws IOException, TransportException {
-        if (compress) {
-            options = TransportRequestOptions.builder(options).withCompress(true).build();
+        if (options.compress() == null) {
+            options = TransportRequestOptions.builder(options).withCompress(compress).build();
         }
 
         // only compress if asked and the request is not bytes. Otherwise only
@@ -987,8 +987,8 @@ public abstract class TcpTransport extends AbstractLifecycleComponent implements
             final String action,
             TransportResponseOptions options,
             byte status) throws IOException {
-        if (compress) {
-            options = TransportResponseOptions.builder(options).withCompress(true).build();
+        if (options.compress() == null) {
+            options = TransportResponseOptions.builder(options).withCompress(compress).build();
         }
         status = TransportStatus.setResponse(status); // TODO share some code with sendRequest
         ReleasableBytesStreamOutput bStream = new ReleasableBytesStreamOutput(bigArrays);

@@ -24,10 +24,10 @@ import org.elasticsearch.common.unit.TimeValue;
 public class TransportRequestOptions {
 
     private final TimeValue timeout;
-    private final boolean compress;
+    private final Boolean compress;
     private final Type type;
 
-    private TransportRequestOptions(TimeValue timeout, boolean compress, Type type) {
+    private TransportRequestOptions(TimeValue timeout, Boolean compress, Type type) {
         this.timeout = timeout;
         this.compress = compress;
         this.type = type;
@@ -37,7 +37,7 @@ public class TransportRequestOptions {
         return this.timeout;
     }
 
-    public boolean compress() {
+    public Boolean compress() {
         return this.compress;
     }
 
@@ -68,7 +68,7 @@ public class TransportRequestOptions {
 
     public static class Builder {
         private TimeValue timeout;
-        private boolean compress;
+        private Boolean compress;
         private Type type = Type.REG;
 
         private Builder() {
@@ -83,7 +83,7 @@ public class TransportRequestOptions {
             return this;
         }
 
-        public Builder withCompress(boolean compress) {
+        public Builder withCompress(Boolean compress) {
             this.compress = compress;
             return this;
         }

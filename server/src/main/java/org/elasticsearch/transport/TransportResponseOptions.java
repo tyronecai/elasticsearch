@@ -21,13 +21,13 @@ package org.elasticsearch.transport;
 
 public class TransportResponseOptions {
 
-    private final boolean compress;
+    private final Boolean compress;
 
-    private TransportResponseOptions(boolean compress) {
+    private TransportResponseOptions(Boolean compress) {
         this.compress = compress;
     }
 
-    public boolean compress() {
+    public Boolean compress() {
         return this.compress;
     }
 
@@ -43,9 +43,9 @@ public class TransportResponseOptions {
     }
 
     public static class Builder {
-        private boolean compress;
+        private Boolean compress;
 
-        public Builder withCompress(boolean compress) {
+        public Builder withCompress(Boolean compress) {
             this.compress = compress;
             return this;
         }
